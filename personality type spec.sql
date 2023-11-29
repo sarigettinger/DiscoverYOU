@@ -1,6 +1,6 @@
 /*
 I have recently launched a website, DiscoverYou, which offers a free version of the Myers-Briggs personality test. 
-After taking the test, users have the option of recieving a fuller report, at a cost. Career counseling is also available at a charge.
+After taking the test, users have the option of recieving a fuller report, at a small cost. Career counseling is also available at a charge.
 
 This test reveals tendencies in four different areas:
 Extroverted (E) vs. Introverted (I)
