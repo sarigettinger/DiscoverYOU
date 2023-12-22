@@ -4,9 +4,9 @@ drop table if exists dbo.Personalities
 go 
 create table dbo.Personalities(
     PersonalityId int not null IDENTITY primary key,
-    ClientName varchar(50) not null unique,
+    ClientName varchar(50) not null unique constraint personalities_client_name_cannot_be_blank check(clientname <> ''),
     DOB date not null ,
-    DateTestTaken date not null constraint c_personalities_datetakentest_must_be_before_Jan_24_2021 check(DateTestTaken > '1-24-2021'),
+    DateTestTaken date not null constraint c_personalities_datetakentest_must_be_after_Jan_24_2021 check(DateTestTaken > '1-24-2021'),
     Gender varchar(6) not null constraint c_personalities_gender_has_to_be_Male_or_Female check(Gender in ('Male','Female')),
     ExtrovertScore decimal(4,2) not null,
     IntrovertScore decimal(4,2) not null,
