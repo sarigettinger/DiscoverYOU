@@ -1,12 +1,11 @@
 --1) I want to know which personality types are most likely to pay for the report. Show which 4-letter types have bought the most full reports
-    -- in proportion with how many of them have taken the test. (the three biggest buyers)
-select top 3 p.fourletterpersonalitytype, p.broughtreport, sum(p.OweForReport + p.OweForCounseling)
+    -- (the three biggest buyers)
+select top 3 p.fourletterpersonalitytype, Num = count(*)
 from personalities p
-where p.BroughtReport > 0
-group by p.FourLetterPersonalityType, p.BroughtReport
-order by p.BroughtReport desc 
+where p.BroughtReport = 1
+group by p.FourLetterPersonalityType
+order by Num desc 
 
-select * from Personalities
 /*2) Which personality type seems to be more common based on the data of our test-takers-
     Extrovert or Introvert?
     Sensing or Intuitive?
@@ -35,22 +34,17 @@ select clientname = concat(SUBSTRING(p.ClientName,CHARINDEX(' ',p.clientname) + 
 from personalities p 
 where p.paymentmethod is not null 
 --4) Recently, there has been a school of thought that men are just as emotional as women. To prove or disprove this, I want to know how many people are Ts 
-    --and how many are Fs, separated by gender and age bracket (under 18, 18-25, 26-40, 41-65, over 65)
+    --and how many are Fs, separated by gender
 
-select HaveF = avg(CHARINDEX('f',p.FourLetterPersonalityType)), HaveT = avg(CHARINDEX('t',p.FourLetterPersonalityType)), p.gender, 
-    AgeBraket = case when datediff(year,p.dob,p.DateTestTaken) < 18 then 'Under 18' 
-        when datediff(year,p.dob,p.DateTestTaken) between 18 and 25 then '18-25'
-        when datediff(year,p.dob,p.DateTestTaken) between 26 and 40 then '26-40'
-        when datediff(year,p.dob,p.DateTestTaken) between 41 and 65 then '41-65'
-        when datediff(year,p.dob,p.DateTestTaken) > 65 then 'Over 65'
-    end 
-from personalities p
-group by p.gender, case when datediff(year,p.dob,p.DateTestTaken) < 18 then 'Under 18' 
-        when datediff(year,p.dob,p.DateTestTaken) between 18 and 25 then '18-25'
-        when datediff(year,p.dob,p.DateTestTaken) between 26 and 40 then '26-40'
-        when datediff(year,p.dob,p.DateTestTaken) between 41 and 65 then '41-65'
-        when datediff(year,p.dob,p.DateTestTaken) > 65 then 'Over 65'
-    end 
+select Letter ='F',Amount = count(*),p.Gender
+from Personalities p 
+where p.FourLetterPersonalityType like '%f%'
+group by p.Gender
+union select 'T',count(*),p.Gender
+from Personalities p 
+where p.FourLetterPersonalityType like '%T%'
+group by p.Gender
+
 
 
 

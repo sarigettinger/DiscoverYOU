@@ -3,7 +3,7 @@ go
 delete personalities 
 go 
 insert Personalities(ClientName,DOB,DateTestTaken,Gender,ExtrovertScore,introvertScore,sensingscore,intuitivescore,ThinkingScore,FeelingScore,JudgingScore,PercievingScore,BroughtReport,NumofCounselingSessions,PaymentMethod)
-select 'Shani Kalusyzner', '05/25/2004', '11/21/2023', 'female', 72, 28, 30, 70, 40, 60, 15, 85, 1, 0, 'venmo'
+select 'Shani Kalusyzner', '05/25/2004', '11/21/2023', 'female', 0, 28, 30, 70, 40, 60, 15, 85, 1, 90, 'venmo'
 union select 'Raizy Kirzner', '04/19/1998', '09/22/2022', 'female', 20, 80, 57, 43, 68, 32, 40, 60, 0, 0, null
 union select 'Fraidy Levin', '08/10/2010', '11/15/2023', 'female', 95, 5, 87, 13, 22, 78, 45, 55, 1, 3, 'credit card'
 union select 'Yehudah Greenberg', '04/03/1999', '11/20/2023', 'male', 67, 33, 48, 52, 19, 81, 56, 44, 0, 2, 'credit card'
